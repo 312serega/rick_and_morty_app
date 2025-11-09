@@ -1,0 +1,65 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../data/user_repo.dart';
+import '../model/user_model.dart';
+import '../model/users_model.dart';
+
+class UsersBloc extends Bloc<UserEvent, UserState> {
+  UsersBloc({required this.repo}) : super(UserInitialState()) {
+    on<GetUsersEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        final results = await repo.getUsers(name: event.name, page: event.page);
+        character.addAll(results.results ?? []);
+        emit(UsersSuccessState(model: character, data: results.info!));
+      } catch (e) {
+        emit(UserErrorState());
+      }
+    });
+
+    on<GetUserEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        final results = await repo.getUser(id: event.id);
+        emit(UserSuccessState(model: results));
+      } catch (e) {
+        emit(UserErrorState());
+      }
+    });
+  }
+
+  final UserRepo repo;
+  List<Results> character = [];
+}
+
+abstract class UserEvent {}
+
+class GetUsersEvent extends UserEvent {
+  GetUsersEvent({required this.name, required this.page});
+  final String name;
+  final int page;
+}
+
+class GetUserEvent extends UserEvent {
+  GetUserEvent({required this.id});
+  final String id;
+}
+
+abstract class UserState {}
+
+class UserInitialState extends UserState {}
+
+class UserLoadingState extends UserState {}
+
+class UsersSuccessState extends UserState {
+  UsersSuccessState({required this.model, required this.data});
+  final List<Results> model;
+  final Info data;
+}
+
+class UserSuccessState extends UserState {
+  UserSuccessState({required this.model});
+  final UserModel model;
+}
+
+class UserErrorState extends UserState {}

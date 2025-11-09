@@ -21,7 +21,7 @@
 1. Клонировать репозиторий:
 ```bash
 git clone https://github.com/312serega/rick_and_morty_app.git
-
+```
 2. Перейти в каталог проекта:
 cd rick_and_morty_app
 

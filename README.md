@@ -1,16 +1,32 @@
-# rick_and_morty
+# Rick and Morty App
 
-A new Flutter project.
+Приложение на Flutter для просмотра персонажей Rick and Morty с возможностью поиска, фильтров и избранного.
 
-## Getting Started
+## Описание проекта
+- Просмотр списка персонажей с поддержкой списка и сетки.
+- Детальная страница персонажа.
+- Добавление/удаление персонажей в избранное.
+- Поиск и фильтрация персонажей (по статусу и полу).
+- Локальное сохранение избранного через SharedPreferences.
 
-This project is a starting point for a Flutter application.
+## Стек технологий
+- Flutter 3.19.5
+- State management: ChangeNotifier + Provider
+- HTTP-запросы: Dio
+- Локальное хранение: SharedPreferences
+- Кэширование изображений: cached_network_image
+- Анимации и кастомные виджеты
 
-A few resources to get you started if this is your first Flutter project:
+## Установка и запуск
+1. Клонировать репозиторий:
+```bash
+git clone https://github.com/312serega/rick_and_morty_app.git
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Перейти в каталог проекта:
+cd rick_and_morty_app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Установить зависимости:
+flutter pub get
+
+4. Запустить проект на устройстве или эмуляторе:
+flutter run
